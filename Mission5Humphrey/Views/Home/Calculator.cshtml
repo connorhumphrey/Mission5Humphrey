@@ -1,0 +1,64 @@
+﻿@{
+
+}
+<!-- Calculator Page-->
+<html>
+<head>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+</head>
+
+<body>
+    <h1> Cost Calculator</h1>
+    <p>
+        It's going to cost you if you want ball knowledge bestowed upon you.
+        By paying for me as your tutor, you will experience the occasional highs, and more
+        often the lowest of lows as a viewer of Utah sports. You will also gain insight
+        on how to develop logical opinions and takes, and develop the skill of arguing with 
+        fans of rival teams.
+    </p>
+    <!-- calc inputs-->
+    <label for="hours">Number of Hours:</label>
+    <input type="number" id="hours" min="0">
+    <br>
+    <label>Hourly Rate:</label>
+    <input type="text" id="hourlyRate" value="27" readonly>
+    <br>
+    <button id="calculateBtn">Calculate Total</button>
+    <br>
+    <label>Total:</label>
+
+    <!--vertically align input boxes-->
+    <style>
+        label {
+            display: block; 
+            margin-bottom: 5px; 
+        }
+        input, output, button {
+            display: block; 
+            margin-bottom: 10px; 
+        }
+    </style>
+    <output id="total"></output>
+
+    <!--javascript for calc cost-->
+    <script>
+        $(document).ready(function () {
+            $('#calculateBtn').click(function () {
+                var hours = parseFloat($('#hours').val());
+                // validate inputs
+                if (isNaN(hours) || hours <= 0) {
+                    alert('Please enter a positive number of hours.');
+                    return;
+                }
+
+                var hourlyRate = parseFloat($('#hourlyRate').val());
+                var total = hours * hourlyRate;
+
+                $('#total').text('$' + total.toFixed(2));
+            });
+        });
+    </script>
+
+
+</body>
+</html>
